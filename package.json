@@ -1,5 +1,5 @@
 {
-  "name": "@shadow/discord-transcripts",
+  "name": "web-discord-transcripts",
   "version": "1.0.0",
   "description": "Build web discord transcripts easily",
   "main": "dist/index.js",
