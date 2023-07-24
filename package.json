@@ -1,0 +1,32 @@
+{
+  "name": "@shadow/discord-transcripts",
+  "version": "1.0.0",
+  "description": "Build web discord transcripts easily",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShadowOP1575/discord-transcripts.git"
+  },
+  "keywords": [
+    "discord-transcripts",
+    "static-discord-transcripts",
+    "html-discord-transcripts"
+  ],
+  "author": "Shaurya Chauhan <blues9524@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShadowOP1575/discord-transcripts/issues"
+  },
+  "homepage": "https://github.com/ShadowOP1575/discord-transcripts/#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
