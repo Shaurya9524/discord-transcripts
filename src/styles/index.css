@@ -1,0 +1,7 @@
+:root {
+  --palette-background: "#313338";
+}
+
+.message {
+  background-color: var(--palette-background);
+}

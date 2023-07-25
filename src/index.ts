@@ -1,9 +1,9 @@
-import { getMessageHTML, webpage } from "./lib/utils/html"
+import { getMessageNode, webpage, wrapper } from "./lib/utils/webpage"
 
-export { getMessageHTML, webpage }
+export { getMessageNode, webpage, wrapper }
 
 const webTranscripts = {
-  getMessageHTML,
+  getMessageNode,
   webpage
 }
 
