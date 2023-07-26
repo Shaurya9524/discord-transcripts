@@ -1,9 +1,10 @@
 import { getMessageNode, webpage, wrapper } from "./lib/utils/webpage"
 
-export { getMessageNode, webpage, wrapper }
+export { getMessageNode, wrapper, webpage }
 
 const webTranscripts = {
   getMessageNode,
+  wrapper,
   webpage
 }
 

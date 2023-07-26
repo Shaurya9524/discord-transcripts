@@ -28,8 +28,8 @@ export function wrapper(elements: JSX.Element[]) {
   )
 }
 
-export function webpage({ title, content }: WebpageProps) {
-  const node = <Webpage title={title} content={content} />
+export function webpage({ title, data, content }: WebpageProps) {
+  const node = <Webpage title={title} data={data} content={content} />
   const html = renderToString(node)
   return html
 }

@@ -2,6 +2,25 @@
   --palette-background: "#313338";
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
 .message {
   background-color: var(--palette-background);
 }

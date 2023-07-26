@@ -1,0 +1,8 @@
+.sidebar {
+  --sidebar-background: #1e1f22;
+  width: 10rem;
+  height: 100vh;
+  background-color: var(--sidebar-background);
+  display: flex;
+  padding: 1.5rem;
+}
