@@ -1,5 +1,19 @@
 # web-discord-transcripts
 
+<div align="center">
+	<p>
+		<a href="https://discord.gg/hSpXyy8Cgh">
+    <img src="https://img.shields.io/discord/960453487743881237?color=5865F2&logo=discord&logoColor=white" alt="discord server" />
+    </a>
+		<a href="https://www.npmjs.com/package/web-discord-transcripts">
+    <img src="https://img.shields.io/npm/v/web-discord-transcripts.svg?maxAge=3600&logo=npm" alt="npm version" />
+    </a>
+		<a href="https://www.npmjs.com/package/web-discord-transcripts">
+    <img src="https://img.shields.io/npm/dt/web-discord-transcripts.svg?maxAge=3600&logo=npm" alt="npm downloads" />
+    </a>
+	</p>
+</div>
+
 `web-discord-transcripts` is an npm package that provides a convenient solution for creating web transcripts of chat conversations, particularly for Discord bots, with a focus on ticket systems. This package streamlines the process of generating chat logs and enables easy integration with web applications or user interfaces. It creates static html webpage which can be used to display the transcripts.
 
 ## Table of Contents
@@ -11,6 +25,7 @@
   - [API Reference](#api-reference)
   - [Examples](#examples)
   - [Contributing](#contributing)
+  - [Help](#help)
   - [License](#license)
 
 ## Installation
@@ -135,6 +150,10 @@ export default router
 ## Contributing
 
 Contributions are welcome! If you find any issues or want to suggest enhancements, please open an issue or submit a pull request on the GitHub repository.
+
+## Help
+
+For support and assistance, join our [Discord server](https://discord.gg/hSpXyy8Cgh) and connect with the community to resolve any issues or queries related to the package.
 
 ## License
 
