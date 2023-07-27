@@ -1,3 +1,9 @@
+# packages
 node_modules
+
+# folders
 /dist
 /test
+
+# others
+/package-lock.json
