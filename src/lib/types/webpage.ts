@@ -1,13 +1,14 @@
+import { Guild } from "./guild"
+
+export type ChatContent = JSX.Element[]
+
 export type WebpageProps = {
   title: string
   data: {
-    guild: {
-      name: string,
-      iconURL?: string
-    },
+    guild: Guild,
     transcriptChannel: {
       name: string
     }
   }
-  content: JSX.Element[]
+  content: ChatContent
 }

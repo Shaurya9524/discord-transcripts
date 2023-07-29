@@ -1,13 +1,13 @@
 import { renderToString } from "react-dom/server"
 import { WebpageProps } from "../types/webpage"
-import Webpage from "../../components/webpage"
+import Webpage from "../../components/main/webpage"
+import Wrapper from "../../components/utils/wrapper"
 import { Message } from "../types/message"
 import React from "react"
-import Wrapper from "../../components/wrapper"
 
 export function getMessageNode({ user, payload }: Message) {
   return (
-    <div>
+    <div className="message">
       <p>{user.username}</p>
       <p>{payload.content ? payload.content : "none"}</p>
     </div>

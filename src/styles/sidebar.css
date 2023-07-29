@@ -1,0 +1,48 @@
+.sidebar {
+  --background: #1e1f22;
+  height: 100vh;
+  background-color: var(--background);
+  padding: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.sidebar-icon {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar-icon:hover {
+  border-radius: 30%;
+}
+
+.dms {
+  --dms-bg: #313338;
+  --dms-hover-color: #5865f2;
+  padding: 12px;
+  background-color: var(--dms-bg);
+  border-radius: 50%;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dms:hover {
+  border-radius: 30%;
+  background-color: var(--dms-hover-color);
+}
+
+.dms-servers-seperator {
+  --color: #35363c;
+  width: 32px;
+  height: 2px;
+  background-color: var(--color);
+  border-radius: 1px;
+}

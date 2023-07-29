@@ -1,6 +1,6 @@
 {
   "name": "web-discord-transcripts",
-  "version": "1.1.3",
+  "version": "1.1.13",
   "description": "Build web discord transcripts easily",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,15 +24,17 @@
     "url": "https://github.com/ShadowOP1575/discord-transcripts/issues"
   },
   "homepage": "https://github.com/ShadowOP1575/discord-transcripts/#readme",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "devDependencies": {
     "@types/node": "^20.4.4",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "files": [
     "dist/**/*"
