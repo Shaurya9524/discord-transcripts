@@ -1,0 +1,30 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.message {
+  --background: #313338;
+  background-color: var(--background);
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+}
+
+.message-user-avatar {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.message-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.message-head {
+  display: flex;
+  gap: 5px;
+}

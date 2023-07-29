@@ -1,11 +1,9 @@
-import { getMessageNode, webpage, wrapper } from "./lib/utils/webpage"
+import { Webpage } from "./functions/main/webpage"
+import { Message } from "./functions/main/message"
+import { Wrapper } from "./functions/utils/wrapper"
 
-export { getMessageNode, wrapper, webpage }
+export { Message, Webpage, Wrapper }
 
-const webTranscripts = {
-  getMessageNode,
-  wrapper,
-  webpage
-}
+const webTranscripts = { Message, Webpage, Wrapper }
 
 export default webTranscripts

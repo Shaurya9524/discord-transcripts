@@ -11,4 +11,5 @@ export interface MessagePayload {
 export interface Message {
   user: User
   payload: MessagePayload
+  time: Date
 }
