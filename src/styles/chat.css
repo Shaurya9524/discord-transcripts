@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  padding: 0.75rem;
 }
 
 .message {
@@ -14,8 +15,8 @@
 
 .message-user-avatar {
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
 }
 
 .message-contents {
@@ -24,7 +25,36 @@
   gap: 5px;
 }
 
-.message-head {
+.message-head :not(:first-child, :last-child) {
+  padding: 0 2.5px;
+}
+
+.message-head :first-child {
+  padding-right: 2.5px;
+}
+
+.message-head :last-child {
+  padding-left: 2.5px;
+}
+
+.message-username {
+  font-size: 1rem;
+}
+
+.message-bot-tag-wrapper {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+}
+
+.message-time {
+  --color: #949ba4;
+  color: var(--color);
+  font-size: 0.75rem;
+}
+
+.message-body {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  gap: 4px;
 }

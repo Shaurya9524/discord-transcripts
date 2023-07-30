@@ -1,0 +1,7 @@
+.bot-tag {
+  --color: #5865f2;
+  background-color: var(--color);
+  font-size: 0.625rem;
+  padding: 0.15rem;
+  border-radius: 0.2rem;
+}

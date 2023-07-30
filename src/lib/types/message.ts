@@ -3,7 +3,7 @@ import { File } from "./file"
 import { User } from "./user"
 
 export interface MessagePayload {
-  content?: string
+  content?: string[]
   embeds?: Embed[]
   files?: File[]
 }
