@@ -1,4 +1,5 @@
 import { Message as MessageProps } from "../../lib/types/message"
+import { resolveContent } from "../../lib/utils/message"
 import { formatDate } from "../../lib/utils/time"
 import { error } from "../../lib/utils/error"
 import Bot from "../../components/utils/bot"
@@ -16,7 +17,9 @@ export function Message({ user, payload, time }: MessageProps) {
   }
 
   const messageContents = content && content.length > 0 && content.map((content, i) => {
-    return <div key={i} className="message-content">{content}</div>
+    const resolvedContent = resolveContent(content)
+
+    return <div key={i} className="message-content">{resolvedContent}</div>
   })
 
   return (

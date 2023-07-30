@@ -1,4 +1,5 @@
-import { Role as _RoleProps } from "../../lib/types/role"
-import _RoleComponent from "../../components/utils/role"
+import { Role as RoleProps } from "../../lib/types/role"
 
-
+export function Role({ name, color }: RoleProps) {
+  return `RoleObject(${name}, ${color})`
+}
