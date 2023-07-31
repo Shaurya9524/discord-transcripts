@@ -6,7 +6,7 @@ import React, { CSSProperties } from "react"
 import { Role } from "../../lib/types/role"
 
 export default function Role({ name, color }: Role) {
-  if (!isHexColor) {
+  if (color && !isHexColor(color)) {
     error(`Invalid hex color provided: ${color}`)
   }
 

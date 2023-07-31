@@ -1,5 +1,5 @@
-import { resolveContentForRoleObjects } from "../../lib/utils/message"
 import { Message as MessageProps } from "../../lib/types/message"
+import { resolveContent } from "../../lib/utils/message"
 import { formatDate } from "../../lib/utils/time"
 import { error } from "../../lib/utils/error"
 import { defaults } from "../../config/user"
@@ -18,7 +18,7 @@ export function Message({ user, payload, time }: MessageProps) {
   }
 
   const messageContents = content && content.length > 0 && content.map((content, i) => {
-    const resolvedContent = resolveContentForRoleObjects(content)
+    const resolvedContent = resolveContent(content)
 
     return (
       <div key={i} className="message-content">
