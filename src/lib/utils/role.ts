@@ -1,14 +1,20 @@
-import { defaults } from "../../config/role"
+import { Role } from "../types/role"
 import { regex } from "./regex"
 
-const { roleObject } = regex
+type MatchedRoleData = { match: string, index: number } & Role
 
-export function getRoleObjectsFromContent(content: string): { name: string, color: string }[] {
-  const roleObjects: { name: string, color: string }[] = []
+export function getRoleObjectsFromString(content: string) {
+  const roleObjects: MatchedRoleData[] = []
+  const matches = content.matchAll(regex.roleObject)
 
-  for (const match of content.matchAll(roleObject)) {
-    const [, name, color] = match
-    roleObjects.push({ name: name.trim(), color: color ? color.trim() : defaults.color.text })
+  for (const match of matches) {
+    const [fullMatch, name, color] = match
+    roleObjects.push({
+      match: fullMatch,
+      index: match.index ?? 0,
+      name,
+      color
+    })
   }
 
   return roleObjects

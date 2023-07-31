@@ -1,3 +1,8 @@
+.role {
+  padding: 1.5px;
+  border-radius: 3px;
+}
+
 .bot-tag {
   --color: #5865f2;
   background-color: var(--color);

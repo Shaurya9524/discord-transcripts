@@ -1,6 +1,6 @@
 export const regex = {
   hexColor: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/i,
-  roleObject: /^RoleObject\((.+?)(?:,\s*(.+?))?\)$/
+  roleObject: /RoleObject\(([^),]+)(?:,\s*([^)]+))?\)/g
 }
 
 export function isHexColor(string: string) {

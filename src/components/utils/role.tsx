@@ -15,5 +15,8 @@ export default function Role({ name, color }: Role) {
     backgroundColor: color ? hexToRgb(color).changeOpacity(0.1).toHexColor() : defaults.color.background
   }
 
-  return <span className="role" style={style}>{name}</span>
+  return <span className="role" style={style}>
+    <span>@</span>
+    <span>{name}</span>
+  </span>
 }

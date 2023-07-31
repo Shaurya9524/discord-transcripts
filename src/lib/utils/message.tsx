@@ -1,18 +1,31 @@
 import RoleComponent from "../../components/utils/role"
-import { getRoleObjectsFromContent } from "./role"
-import { defaults } from "../../config/role"
+import { getRoleObjectsFromString } from "./role"
 import React from "react"
 
-export function resolveContent(content: string) {
-  const roleObjects = getRoleObjectsFromContent(content)
-  let newContent = content
+export function resolveContentForRoleObjects(content: string) {
+  const roleObjectsData = getRoleObjectsFromString(content)
 
-  for (const roleObj of roleObjects) {
-    const { name, color } = roleObj
-    const roleObjectString = `RoleObject(${name}${color ? `, ${color}` : `${defaults.color.text}`})`
-    const roleComponent = <RoleComponent name={name} color={color} />
-    newContent = content.replace(roleObjectString, `${roleComponent}`)
+  if (roleObjectsData.length === 0) {
+    return content
   }
 
-  return newContent
+  const parts: (string | JSX.Element)[] = []
+  let lastIndex = 0
+  const entries = roleObjectsData.entries()
+
+  for (const [elementIndex, data] of entries) {
+
+    const { match, index, name, color } = data
+    const component = <RoleComponent key={`${name}-${color}`} name={name} color={color} />
+
+    parts.push(content.slice(lastIndex, index))
+    parts.push(component)
+    lastIndex = index + match.length
+
+    if (elementIndex === roleObjectsData.length - 1) {
+      parts.push(content.slice(lastIndex, content.length))
+    }
+  }
+
+  return parts
 }
