@@ -11,7 +11,6 @@ export default function Role({ name, color }: Role) {
   }
 
   const bgColor = color ? hexToRgb(color).changeOpacity(0.1).toHexColor() : defaults.color.background
-  const hoverColor = hexToRgb(bgColor).changeOpacity(0.3).toHexColor()
 
   const style: CSSProperties = {
     color: color ? color : defaults.color.text,
@@ -19,7 +18,7 @@ export default function Role({ name, color }: Role) {
   }
 
   return (
-    <span className="role" style={style} data-hovercolor={hoverColor}>
+    <span className="role" style={style}>
       <span>@</span>
       <span>{name}</span>
     </span>

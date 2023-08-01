@@ -1,4 +1,4 @@
-import { Embed } from "./embed"
+import { Embed } from "../../functions/main/embed"
 import { File } from "./file"
 import { User } from "./user"
 
