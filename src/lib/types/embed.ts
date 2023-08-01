@@ -4,7 +4,7 @@ export interface Embed {
   description?: string
   color?: string
   author?: {
-    icon_url: string
+    iconURL: string
     name: string
     icon?: string
     url?: string
@@ -17,7 +17,7 @@ export interface Embed {
   }
   footer?: {
     text: string
-    icon?: string
+    iconURL?: string
   }
   timestamp?: boolean
 }

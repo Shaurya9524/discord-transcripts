@@ -22,7 +22,9 @@ export function Message({ user, payload, time }: MessageProps) {
 
     return (
       <div key={i} className="message-content">
-        {resolvedContent}
+        <div className="content">
+          {resolvedContent}
+        </div>
       </div>
     )
   })
