@@ -1,5 +1,5 @@
-import ChannelComponent from "../../components/utils/channel"
-import RoleComponent from "../../components/utils/role"
+import ChannelComponent from "../../components/elements/channel"
+import RoleComponent from "../../components/elements/role"
 import { getChannelObjectsFromString } from "./channel"
 import { getRoleObjectsFromString } from "./role"
 import React, { isValidElement } from "react"

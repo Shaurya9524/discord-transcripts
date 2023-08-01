@@ -10,13 +10,18 @@ export default function Role({ name, color }: Role) {
     error(`Invalid hex color provided: ${color}`)
   }
 
+  const bgColor = color ? hexToRgb(color).changeOpacity(0.1).toHexColor() : defaults.color.background
+  const hoverColor = hexToRgb(bgColor).changeOpacity(0.3).toHexColor()
+
   const style: CSSProperties = {
     color: color ? color : defaults.color.text,
-    backgroundColor: color ? hexToRgb(color).changeOpacity(0.1).toHexColor() : defaults.color.background
+    backgroundColor: bgColor
   }
 
-  return <span className="role" style={style}>
-    <span>@</span>
-    <span>{name}</span>
-  </span>
+  return (
+    <span className="role" style={style} data-hovercolor={hoverColor}>
+      <span>@</span>
+      <span>{name}</span>
+    </span>
+  )
 }

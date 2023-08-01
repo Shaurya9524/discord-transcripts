@@ -1,5 +1,5 @@
 export const regex = {
-  hexColor: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/i,
+  hexColor: /^#?([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})$/i,
   roleObject: /RoleObject\(([^),]+)(?:,\s*([^)]+))?\)/g,
   channelObject: /ChannelObject\(([a-zA-Z0-9_-]+)\)$/g
 }

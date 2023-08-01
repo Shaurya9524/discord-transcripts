@@ -3,6 +3,10 @@
   border-radius: 3px;
 }
 
+.role:hover {
+  background-color: attr(data-hovercolor);
+}
+
 .channel {
   --color: #c5c6f7;
   --bg-color: #3c4270;

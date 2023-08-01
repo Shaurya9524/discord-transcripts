@@ -1,9 +1,9 @@
 import { Message as MessageProps } from "../../lib/types/message"
 import { resolveContent } from "../../lib/utils/message"
 import { formatDate } from "../../lib/utils/time"
+import Bot from "../../components/elements/bot"
 import { error } from "../../lib/utils/error"
 import { defaults } from "../../config/user"
-import Bot from "../../components/utils/bot"
 import React from "react"
 
 export function Message({ user, payload, time }: MessageProps) {
@@ -32,7 +32,7 @@ export function Message({ user, payload, time }: MessageProps) {
 
   return (
     <div className="message">
-      <img className="message-user-avatar" src={user.avatarUrl} alt={user.username} />
+      <img className="message-user-avatar" src={user.avatarURL} alt={user.username} />
       <div className="message-contents">
         <div className="message-head">
           <span className="message-username" style={{ color: usernameColor }}>{user.username}</span>
