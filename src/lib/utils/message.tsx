@@ -2,69 +2,106 @@ import ChannelComponent from "../../components/utils/channel"
 import RoleComponent from "../../components/utils/role"
 import { getChannelObjectsFromString } from "./channel"
 import { getRoleObjectsFromString } from "./role"
-import React from "react"
+import React, { isValidElement } from "react"
 
-function resolveContentForRoles(content: string) {
-  const roleObjectsData = getRoleObjectsFromString(content)
+type ResolveData = (string | JSX.Element)[]
 
-  if (roleObjectsData.length === 0) {
-    return [content]
-  }
+function resolveContentForRoles(contents: ResolveData): ResolveData {
+  const data: ResolveData[] = []
 
-  const parts: (string | JSX.Element)[] = []
-  let lastIndex = 0
-  const entries = roleObjectsData.entries()
+  for (const content of contents) {
+    const parts: ResolveData = []
 
-  for (const [elementIndex, data] of entries) {
-
-    const { match, index, name, color } = data
-    const component = <RoleComponent key={`${name}-${color}`} name={name} color={color} />
-
-    parts.push(content.slice(lastIndex, index))
-    parts.push(component)
-    lastIndex = index + match.length
-
-    if (elementIndex === roleObjectsData.length - 1) {
-      parts.push(content.slice(lastIndex, content.length))
+    if (isValidElement(content)) {
+      parts.push(content)
     }
+
+    else {
+      const contentStr = content as string
+      const roleObjectsData = getRoleObjectsFromString(contentStr)
+
+      if (roleObjectsData.length === 0) {
+        parts.push(content)
+      }
+
+      else {
+        let lastIndex = 0
+        const entries = roleObjectsData.entries()
+
+        for (const [elementIndex, data] of entries) {
+          const { match, index, name, color } = data
+          const component = <RoleComponent key={`${name}-${color}`} name={name} color={color} />
+
+          parts.push(contentStr.slice(lastIndex, index))
+          parts.push(component)
+          lastIndex = index + match.length
+
+          if (elementIndex === roleObjectsData.length - 1) {
+            parts.push(contentStr.slice(lastIndex, contentStr.length))
+          }
+        }
+      }
+    }
+
+    data.push(parts)
   }
 
-  return parts
+  return data.flatMap(parts => parts)
 }
 
-function resolveContentForchannels(content: string) {
-  const channelObjectsData = getChannelObjectsFromString(content)
+function resolveContentForchannels(contents: ResolveData): ResolveData {
+  const data: ResolveData[] = []
 
-  if (channelObjectsData.length === 0) {
-    return [content]
-  }
+  for (const content of contents) {
+    const parts: ResolveData = []
 
-  const parts: (string | JSX.Element)[] = []
-  let lastIndex = 0
-  const entries = channelObjectsData.entries()
-
-  for (const [elementIndex, data] of entries) {
-
-    const { match, index, name } = data
-    const component = <ChannelComponent key={`${name}-${elementIndex}`} name={name} />
-
-    parts.push(content.slice(lastIndex, index))
-    parts.push(component)
-    lastIndex = index + match.length
-
-    if (elementIndex === channelObjectsData.length - 1) {
-      parts.push(content.slice(lastIndex, content.length))
+    if (isValidElement(content)) {
+      parts.push(content)
     }
+
+    else {
+      const contentStr = content as string
+      const channelObjectsData = getChannelObjectsFromString(contentStr)
+
+      if (channelObjectsData.length === 0) {
+        parts.push(content)
+      }
+
+      else {
+        let lastIndex = 0
+        const entries = channelObjectsData.entries()
+
+        for (const [elementIndex, data] of entries) {
+          const { match, index, name } = data
+          const component = <ChannelComponent key={`${name}-${elementIndex}`} name={name} />
+
+          parts.push(contentStr.slice(lastIndex, index))
+          parts.push(component)
+          lastIndex = index + match.length
+
+          if (elementIndex === channelObjectsData.length - 1) {
+            parts.push(contentStr.slice(lastIndex, contentStr.length))
+          }
+        }
+      }
+    }
+
+    data.push(parts)
   }
 
-  return parts
+  return data.flatMap(parts => parts)
 }
 
-export function resolveContent(content: string) {
-  let parsedContent = content
+export function resolveContent(content: string | JSX.Element) {
+  let parsedContent = [content]
+  const resolutionParameters = [
+    resolveContentForRoles,
+    resolveContentForchannels
+  ]
 
-  // parsedContent = resolveContentForRoles(parsedContent)
-  // parsedContent = resolveContentForchannels(parsedContent)
+  for (const resParam of resolutionParameters) {
+    parsedContent = resParam(parsedContent)
+  }
 
   return parsedContent
 }

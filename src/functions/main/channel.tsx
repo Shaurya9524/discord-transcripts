@@ -1,7 +1,7 @@
-import { Role as RoleProps } from "../../lib/types/role"
+import { Channel as ChannelProps } from "../../lib/types/channel"
 import { error } from "../../lib/utils/error"
 
-export function Channel({ name }: RoleProps) {
+export function Channel({ name }: ChannelProps) {
   if (!name) {
     error("Channel name is required to create a Channel Object")
   }

@@ -12,7 +12,7 @@
   border-radius: 3px;
   color: var(--color);
   background-color: var(--bg-color);
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
 .channel:hover {
