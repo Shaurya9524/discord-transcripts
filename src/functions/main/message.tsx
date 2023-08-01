@@ -1,6 +1,6 @@
 import { Message as MessageProps } from "../../lib/types/message"
 import EmbedComponent from "../../components/elements/embed"
-import { resolveContent } from "../../lib/utils/message"
+import { resolveContent } from "../../lib/utils/content"
 import { formatDate } from "../../lib/utils/time"
 import Bot from "../../components/elements/bot"
 import { error } from "../../lib/utils/error"
@@ -35,32 +35,11 @@ export function Message({ user, payload, time }: MessageProps) {
     error("A user cannot send embeds")
   }
 
-  const messageContents = content && content.length > 0 && content.map((content, i) => {
-    const resolvedContent = resolveContent(content)
-    const resolvedEmbeds = embeds?.map(embed => <EmbedComponent key={i} embedData={embed.data} />)
-
-    return (
-      <>
-        {
-          content && (
-            <div className="message-content">
-              {resolvedContent}
-            </div>
-          )
-        }
-        {
-          embeds && (
-            <div className="message-embeds">
-              {resolvedEmbeds}
-            </div>
-          )
-        }
-      </>
-    )
-  })
-
   const higestRoleColor = user.highestRole?.color
   const usernameColor = higestRoleColor ? higestRoleColor : defaults.color
+
+  const messageContents = content && content.map(content => resolveContent(content))
+  const messageEmbeds = embeds && embeds.map((embed, i) => <EmbedComponent key={i} embedData={embed.data} />)
 
   return (
     <div className="message">
@@ -72,7 +51,12 @@ export function Message({ user, payload, time }: MessageProps) {
           <span className="message-time">{formatDate(time)}</span>
         </div>
         <div className="message-body">
-          {messageContents}
+          <div className="message-content">
+            {messageContents}
+          </div>
+          <div className="message-embeds">
+            {messageEmbeds}
+          </div>
         </div>
       </div>
     </div>

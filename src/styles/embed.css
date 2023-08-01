@@ -1,6 +1,16 @@
 .message-embed {
   --bg-color: #2b2d31;
   background-color: var(--bg-color);
-  padding: 1rem;
-  border-radius: 10px;
+  border-radius: 6px;
+  display: flex;
+  overflow: hidden;
+}
+
+.embed-main-content {
+  padding: 0.5rem;
+}
+
+.embed-color {
+  width: 3.5px;
+  height: inherit;
 }
