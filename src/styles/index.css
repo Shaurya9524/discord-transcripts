@@ -19,6 +19,8 @@ body {
   background-color: var(--bg-color);
   color: var(--default-text-color);
   font-family: "Montserrat", sans-serif;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 ul {

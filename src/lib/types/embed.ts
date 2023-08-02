@@ -1,12 +1,11 @@
 export interface Embed {
-  title: string
+  title?: string
   url?: string
   description?: string
   color?: string
   author?: {
-    iconURL: string
     name: string
-    icon?: string
+    iconURL?: string
     url?: string
   }
   image?: {
