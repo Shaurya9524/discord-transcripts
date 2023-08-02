@@ -5,7 +5,7 @@ import { defaults } from "../../config/role"
 import React, { CSSProperties } from "react"
 import { Role } from "../../lib/types/role"
 
-export default function Role({ name, color }: Role) {
+export default function RoleMention({ name, color }: Role) {
   if (color && !isHexColor(color)) {
     error(`Invalid hex color provided: ${color}`)
   }

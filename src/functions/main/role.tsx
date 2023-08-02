@@ -1,16 +1,16 @@
-import { Role as RoleProps } from "../../lib/types/role"
 import { isHexColor } from "../../lib/utils/regex"
 import { error } from "../../lib/utils/error"
 import { defaults } from "../../config/role"
+import { Role } from "../../lib/types/role"
 
-export function Role({ name, color }: RoleProps) {
+export function RoleMention({ name, color }: Role) {
   if (!name) {
-    error("Role name is required to create a Role Object")
+    error("Role name is required to create a role mention")
   }
 
   if (color && !isHexColor(color)) {
     error(`Invalid hex color provided: ${color}`)
   }
 
-  return `RoleObject(${name}, ${color ? color : defaults.color.text})`
+  return `RoleMention(${name}, ${color ? color : defaults.color.text})`
 }

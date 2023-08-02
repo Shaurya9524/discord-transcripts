@@ -1,10 +1,7 @@
-import ChannelComponent from "../../components/elements/channel"
-import RoleComponent from "../../components/elements/role"
-import UserComponent from "../../components/elements/user"
-
-import { getChannelObjectsFromString } from "./channel"
-import { getRoleObjectsFromString } from "./role"
-import { getUserObjectsFromString } from "./user"
+import { getChannelMentions, getRoleMentions, getUserMentions } from "./mentions"
+import ChannelMention from "../../components/elements/channel"
+import RoleMention from "../../components/elements/role"
+import UserMention from "../../components/elements/user"
 
 import React, { isValidElement } from "react"
 
@@ -22,7 +19,7 @@ function resolveContentForUsers(contents: ResolveData): ResolveData {
 
     else {
       const contentStr = content as string
-      const userObjectsData = getUserObjectsFromString(contentStr)
+      const userObjectsData = getUserMentions(contentStr)
 
       if (userObjectsData.length === 0) {
         parts.push(content)
@@ -34,7 +31,7 @@ function resolveContentForUsers(contents: ResolveData): ResolveData {
 
         for (const [elementIndex, data] of entries) {
           const { match, index, username } = data
-          const component = <UserComponent key={`${username}-${elementIndex}`} username={username} />
+          const component = <UserMention key={`${username}-${elementIndex}`} username={username} />
 
           parts.push(contentStr.slice(lastIndex, index))
           parts.push(component)
@@ -65,7 +62,7 @@ function resolveContentForRoles(contents: ResolveData): ResolveData {
 
     else {
       const contentStr = content as string
-      const roleObjectsData = getRoleObjectsFromString(contentStr)
+      const roleObjectsData = getRoleMentions(contentStr)
 
       if (roleObjectsData.length === 0) {
         parts.push(content)
@@ -77,7 +74,7 @@ function resolveContentForRoles(contents: ResolveData): ResolveData {
 
         for (const [elementIndex, data] of entries) {
           const { match, index, name, color } = data
-          const component = <RoleComponent key={`${name}-${color}`} name={name} color={color} />
+          const component = <RoleMention key={`${name}-${color}`} name={name} color={color} />
 
           parts.push(contentStr.slice(lastIndex, index))
           parts.push(component)
@@ -108,7 +105,7 @@ function resolveContentForchannels(contents: ResolveData): ResolveData {
 
     else {
       const contentStr = content as string
-      const channelObjectsData = getChannelObjectsFromString(contentStr)
+      const channelObjectsData = getChannelMentions(contentStr)
 
       if (channelObjectsData.length === 0) {
         parts.push(content)
@@ -120,7 +117,7 @@ function resolveContentForchannels(contents: ResolveData): ResolveData {
 
         for (const [elementIndex, data] of entries) {
           const { match, index, name } = data
-          const component = <ChannelComponent key={`${name}-${elementIndex}`} name={name} />
+          const component = <ChannelMention key={`${name}-${elementIndex}`} name={name} />
 
           parts.push(contentStr.slice(lastIndex, index))
           parts.push(component)
