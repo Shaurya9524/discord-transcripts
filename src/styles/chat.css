@@ -1,10 +1,28 @@
 .chat {
+  --scrollbar-width: 8px;
+  --scrollbar-track-background: #2b2d31;
+  --scrollbar-thumb-background: #1a1b1e;
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 0.75rem;
+  width: 100%;
   max-height: 100vh;
+  overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.chat::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+.chat::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-background);
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-background);
+  border-radius: 10px;
 }
 
 .message {
