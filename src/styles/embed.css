@@ -1,3 +1,9 @@
+.message-embeds {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .message-embed {
   --bg-color: #2b2d31;
   background-color: var(--bg-color);

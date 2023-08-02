@@ -45,6 +45,12 @@
   gap: 5px;
 }
 
+.message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .message-head :not(:first-child, :last-child) {
   padding: 0 2.5px;
 }

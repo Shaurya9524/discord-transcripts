@@ -38,7 +38,13 @@ export function Message({ user, payload, time }: MessageProps) {
   const higestRoleColor = user.highestRole?.color
   const usernameColor = higestRoleColor ? higestRoleColor : defaults.color
 
-  const messageContents = content && content.map(content => resolveContent(content))
+  const messageContents = content && content.map((content, i) => {
+    return (
+      <div key={i} className={`message-content-${i}`}>
+        {resolveContent(content)}
+      </div>
+    )
+  })
   const messageEmbeds = embeds && embeds.map((embed, i) => <EmbedComponent key={i} embedData={embed.data} />)
 
   return (
