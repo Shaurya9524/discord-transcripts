@@ -1,10 +1,57 @@
 import ChannelComponent from "../../components/elements/channel"
 import RoleComponent from "../../components/elements/role"
+import UserComponent from "../../components/elements/user"
+
 import { getChannelObjectsFromString } from "./channel"
 import { getRoleObjectsFromString } from "./role"
+import { getUserObjectsFromString } from "./user"
+
 import React, { isValidElement } from "react"
 
 type ResolveData = (string | JSX.Element)[]
+
+function resolveContentForUsers(contents: ResolveData): ResolveData {
+  const data: ResolveData[] = []
+
+  for (const content of contents) {
+    const parts: ResolveData = []
+
+    if (isValidElement(content)) {
+      parts.push(content)
+    }
+
+    else {
+      const contentStr = content as string
+      const userObjectsData = getUserObjectsFromString(contentStr)
+
+      if (userObjectsData.length === 0) {
+        parts.push(content)
+      }
+
+      else {
+        let lastIndex = 0
+        const entries = userObjectsData.entries()
+
+        for (const [elementIndex, data] of entries) {
+          const { match, index, username } = data
+          const component = <UserComponent key={`${username}-${elementIndex}`} username={username} />
+
+          parts.push(contentStr.slice(lastIndex, index))
+          parts.push(component)
+          lastIndex = index + match.length
+
+          if (elementIndex === userObjectsData.length - 1) {
+            parts.push(contentStr.slice(lastIndex, contentStr.length))
+          }
+        }
+      }
+    }
+
+    data.push(parts)
+  }
+
+  return data.flatMap(parts => parts)
+}
 
 function resolveContentForRoles(contents: ResolveData): ResolveData {
   const data: ResolveData[] = []
@@ -95,6 +142,7 @@ function resolveContentForchannels(contents: ResolveData): ResolveData {
 export function resolveContent(content: string | JSX.Element) {
   let parsedContent = [content]
   const resolutionParameters = [
+    resolveContentForUsers,
     resolveContentForRoles,
     resolveContentForchannels
   ]

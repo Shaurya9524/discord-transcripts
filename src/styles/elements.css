@@ -3,6 +3,24 @@
   border-radius: 3px;
 }
 
+.user {
+  --color: #c5c6f7;
+  --bg-color: #3c4270;
+  --hover-color: #ffffff;
+  --hover-bg-color: #5865f2;
+  padding: 1px 2px;
+  border-radius: 3px;
+  color: var(--color);
+  background-color: var(--bg-color);
+  transition: all 0.1s;
+}
+
+.user:hover {
+  color: var(--hover-color);
+  background-color: var(--hover-bg-color);
+  cursor: pointer;
+}
+
 .channel {
   --color: #c5c6f7;
   --bg-color: #3c4270;

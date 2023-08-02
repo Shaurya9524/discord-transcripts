@@ -3,7 +3,8 @@ export const regex = {
   imageUrl: /https?:\/\/(?:www\.)?[\w-]+(?:\.[\w-]+)+[\w.,@?^=%&:/~+#-]*\.(?:png|jpg|jpeg|webp)/,
   hexColor: /^#?([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})$/i,
   roleObject: /RoleObject\(([^),]+)(?:,\s*([^)]+))?\)/g,
-  channelObject: /ChannelObject\(([a-zA-Z0-9_-]+)\)$/g
+  channelObject: /ChannelObject\(([a-zA-Z0-9_-]+)\)$/g,
+  userObject: /UserObject\(([^()]+)\)$/g
 }
 
 export function isURL(str: string) {
@@ -24,4 +25,8 @@ export function isRoleObject(string: string) {
 
 export function isChannelObject(string: string) {
   return regex.channelObject.test(string)
+}
+
+export function isUserObject(string: string) {
+  return regex.userObject.test(string)
 }
