@@ -1,17 +1,24 @@
-import { getChannelMentions, getRoleMentions, getUserMentions } from "./mentions"
 import ChannelMention from "../../components/elements/channel"
 import RoleMention from "../../components/elements/role"
 import UserMention from "../../components/elements/user"
 
 import React, { isValidElement } from "react"
+import { Mentions } from "../types/mentions"
+import { getMentions } from "./mentions"
+import { regex } from "./regex"
 
-type ResolveData = (string | JSX.Element)[]
+type Content = string | JSX.Element
 
-function resolveContentForUsers(contents: ResolveData): ResolveData {
-  const data: ResolveData[] = []
+function resolveMentions<T extends string>(
+  contents: Content[],
+  regex: RegExp,
+  fields: T[],
+  callback: (data: Mentions<T>) => JSX.Element
+): Content[] {
+  const data: Content[][] = []
 
   for (const content of contents) {
-    const parts: ResolveData = []
+    const parts: Content[] = []
 
     if (isValidElement(content)) {
       parts.push(content)
@@ -19,25 +26,25 @@ function resolveContentForUsers(contents: ResolveData): ResolveData {
 
     else {
       const contentStr = content as string
-      const userObjectsData = getUserMentions(contentStr)
+      const objectsData = getMentions(contentStr, regex, fields)
 
-      if (userObjectsData.length === 0) {
+      if (objectsData.length === 0) {
         parts.push(content)
       }
 
       else {
         let lastIndex = 0
-        const entries = userObjectsData.entries()
+        const entries = objectsData.entries()
 
         for (const [elementIndex, data] of entries) {
-          const { match, index, username } = data
-          const component = <UserMention key={`${username}-${elementIndex}`} username={username} />
+          const { match, index } = data
+          const component = callback(data)
 
           parts.push(contentStr.slice(lastIndex, index))
           parts.push(component)
           lastIndex = index + match.length
 
-          if (elementIndex === userObjectsData.length - 1) {
+          if (elementIndex === objectsData.length - 1) {
             parts.push(contentStr.slice(lastIndex, contentStr.length))
           }
         }
@@ -50,101 +57,32 @@ function resolveContentForUsers(contents: ResolveData): ResolveData {
   return data.flatMap(parts => parts)
 }
 
-function resolveContentForRoles(contents: ResolveData): ResolveData {
-  const data: ResolveData[] = []
-
-  for (const content of contents) {
-    const parts: ResolveData = []
-
-    if (isValidElement(content)) {
-      parts.push(content)
-    }
-
-    else {
-      const contentStr = content as string
-      const roleObjectsData = getRoleMentions(contentStr)
-
-      if (roleObjectsData.length === 0) {
-        parts.push(content)
-      }
-
-      else {
-        let lastIndex = 0
-        const entries = roleObjectsData.entries()
-
-        for (const [elementIndex, data] of entries) {
-          const { match, index, name, color } = data
-          const component = <RoleMention key={`${name}-${color}`} name={name} color={color} />
-
-          parts.push(contentStr.slice(lastIndex, index))
-          parts.push(component)
-          lastIndex = index + match.length
-
-          if (elementIndex === roleObjectsData.length - 1) {
-            parts.push(contentStr.slice(lastIndex, contentStr.length))
-          }
-        }
-      }
-    }
-
-    data.push(parts)
-  }
-
-  return data.flatMap(parts => parts)
+function resolveRoleMentions(contents: Content[]): Content[] {
+  return resolveMentions(contents, regex.mention.role, ["name", "color"], (data) => {
+    const { name, color } = data
+    return <RoleMention name={name} color={color} />
+  })
 }
 
-function resolveContentForchannels(contents: ResolveData): ResolveData {
-  const data: ResolveData[] = []
-
-  for (const content of contents) {
-    const parts: ResolveData = []
-
-    if (isValidElement(content)) {
-      parts.push(content)
-    }
-
-    else {
-      const contentStr = content as string
-      const channelObjectsData = getChannelMentions(contentStr)
-
-      if (channelObjectsData.length === 0) {
-        parts.push(content)
-      }
-
-      else {
-        let lastIndex = 0
-        const entries = channelObjectsData.entries()
-
-        for (const [elementIndex, data] of entries) {
-          const { match, index, name } = data
-          const component = <ChannelMention key={`${name}-${elementIndex}`} name={name} />
-
-          parts.push(contentStr.slice(lastIndex, index))
-          parts.push(component)
-          lastIndex = index + match.length
-
-          if (elementIndex === channelObjectsData.length - 1) {
-            parts.push(contentStr.slice(lastIndex, contentStr.length))
-          }
-        }
-      }
-    }
-
-    data.push(parts)
-  }
-
-  return data.flatMap(parts => parts)
+function resolveUserMentions(contents: Content[]): Content[] {
+  return resolveMentions(contents, regex.mention.user, ["username"], (data) => {
+    const { username } = data
+    return <UserMention username={username} />
+  })
 }
 
-export function resolveContent(content: string | JSX.Element) {
+function resolveChannelMentions(contents: Content[]): Content[] {
+  return resolveMentions(contents, regex.mention.channel, ["name"], (data) => {
+    const { name } = data
+    return <ChannelMention name={name} />
+  })
+}
+
+export function resolveContent(content: Content) {
   let parsedContent = [content]
-  const resolutionParameters = [
-    resolveContentForUsers,
-    resolveContentForRoles,
-    resolveContentForchannels
-  ]
+  const resParams = [resolveRoleMentions, resolveUserMentions, resolveChannelMentions,]
 
-  for (const resParam of resolutionParameters) {
+  for (const resParam of resParams) {
     parsedContent = resParam(parsedContent)
   }
 
