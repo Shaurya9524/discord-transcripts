@@ -25,6 +25,7 @@
 .dms {
   --dms-bg: #313338;
   --dms-hover-color: #5865f2;
+  --popup-bg-color: #111214;
   padding: 12px;
   background-color: var(--dms-bg);
   border-radius: 50%;
@@ -32,11 +33,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .dms:hover {
   border-radius: 30%;
   background-color: var(--dms-hover-color);
+}
+
+.dms:hover::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 6px 0;
+  border-color: transparent var(--popup-bg-color) transparent transparent;
+  left: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dms:hover::after {
+  content: "Direct Messages";
+  position: absolute;
+  background-color: var(--popup-bg-color);
+  padding: 0.75rem;
+  border-radius: 7px;
+  font-weight: bold;
+  left: calc(100% + 20px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
 }
 
 .dms-servers-seperator {
@@ -45,4 +73,35 @@
   height: 2px;
   background-color: var(--color);
   border-radius: 1px;
+}
+
+.server-icon-wrapper {
+  --popup-bg-color: #111214;
+  position: relative;
+}
+
+.server-icon-wrapper:hover::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 6px 0;
+  border-color: transparent var(--popup-bg-color) transparent transparent;
+  left: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.server-icon-wrapper:hover::after {
+  content: attr(data-guildname);
+  position: absolute;
+  background-color: var(--popup-bg-color);
+  padding: 0.75rem;
+  border-radius: 7px;
+  font-weight: bold;
+  left: calc(100% + 20px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
 }

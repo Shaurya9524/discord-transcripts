@@ -1,6 +1,6 @@
+import { Guild } from "../../lib/types/guild"
 import logo from "../../assets/logo"
 import React from "react"
-import { Guild } from "../../lib/types/guild"
 
 export function DMs() {
   return (
@@ -15,5 +15,9 @@ export function Separator() {
 }
 
 export function ServerIcon({ guild }: { guild: Guild }) {
-  return <img className="sidebar-icon" src={guild.iconURL} alt={guild.name} />
+  return (
+    <div className="server-icon-wrapper" data-guildname={guild.name}>
+      <img className="sidebar-icon" src={guild.iconURL} alt={guild.name} />
+    </div>
+  )
 }
