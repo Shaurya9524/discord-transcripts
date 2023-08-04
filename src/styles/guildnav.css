@@ -1,0 +1,49 @@
+.guild-navbar {
+  --bg-color: #2b2d31;
+  width: 240px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+}
+
+.guild-navbar-guild-name {
+  --hover-bg-color: #35373c;
+  --shadow-color: #26282c;
+  width: 100%;
+  height: 48px;
+  padding: 1.25rem;
+  box-shadow: 0px 4px 6px -2px var(--shadow-color);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.guild-navbar-guild-name:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.guild-navbar-guild-channels {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.guild-navbar-guild-channel {
+  width: 100%;
+  height: 34px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}

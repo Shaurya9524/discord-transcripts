@@ -13,10 +13,10 @@
   align-items: center;
   box-shadow: 0px 4px 6px -2px var(--shadow-color);
   z-index: 1;
+  padding: 1.25rem;
 }
 
 .chat-channel {
-  padding: 1.25rem;
   font-weight: bold;
   display: flex;
   align-items: center;

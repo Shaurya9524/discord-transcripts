@@ -30,3 +30,7 @@ ul {
 .main {
   display: flex;
 }
+
+.sidebars {
+  display: flex;
+}
