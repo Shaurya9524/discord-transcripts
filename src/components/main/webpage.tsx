@@ -5,13 +5,13 @@ import Chat from "./chat"
 import React from "react"
 
 export default function Webpage({ title, data, content }: WebpageProps) {
-  const { guild } = data
+  const { guild, chatChannel } = data
 
   return (
     <HTMLLayout title={title}>
       <div className="main">
         <Sidebar guild={guild} />
-        <Chat content={content} />
+        <Chat content={content} channel={chatChannel} />
       </div>
     </HTMLLayout>
   )

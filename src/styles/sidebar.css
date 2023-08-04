@@ -41,6 +41,11 @@
   background-color: var(--dms-hover-color);
 }
 
+.dms:hover::before,
+.dms:hover::after {
+  z-index: 2;
+}
+
 .dms:hover::before {
   content: "";
   position: absolute;
@@ -78,6 +83,11 @@
 .server-icon-wrapper {
   --popup-bg-color: #111214;
   position: relative;
+}
+
+.server-icon-wrapper:hover::before,
+.server-icon-wrapper:hover::after {
+  z-index: 2;
 }
 
 .server-icon-wrapper:hover::before {
