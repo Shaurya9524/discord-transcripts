@@ -5,8 +5,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "watch": "tsc -watch",
-    "build": "tsc",
+    "tswatch": "tsc -watch",
+    "tsbuild": "tsc",
+    "copy-styles": "copyfiles -u 1 \"src/styles/**/*\" dist/",
+    "watch-styles": "npm run copy-styles && onchange \"src/styles/**/*\" -- npm run copy-styles",
+    "watch": "concurrently \"npm run tswatch\" \"npm run watch-styles\"",
+    "build": "npm run tsbuild && npm run copy-styles",
     "prepare": "npm run build"
   },
   "repository": {
@@ -28,6 +32,9 @@
     "@types/node": "^20.4.4",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
+    "concurrently": "^8.2.0",
+    "copyfiles": "^2.4.1",
+    "onchange": "^7.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.6"
