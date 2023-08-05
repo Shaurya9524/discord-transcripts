@@ -143,8 +143,8 @@ export const user = {
 
 ```js
 import { ChannelMention, Embed, UserMention } from "web-discord-transcripts"
-import { role } from "../constants/role"
-import { user } from "../constants/user"
+import { role } from "../constants/role.js"
+import { user } from "../constants/user.js"
 
 const infoEmbed = new Embed({
   author: {
