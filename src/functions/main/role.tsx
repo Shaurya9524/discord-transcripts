@@ -3,7 +3,9 @@ import { error } from "../../lib/utils/error"
 import { defaults } from "../../config/role"
 import { Role } from "../../lib/types/role"
 
-export function RoleMention({ name, color }: Role) {
+export function RoleMention(role: Role) {
+  const { name, color } = role
+
   if (!name) {
     error("Role name is required to create a role mention")
   }

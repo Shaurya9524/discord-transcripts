@@ -1,7 +1,9 @@
 import { Channel } from "../../lib/types/channel"
 import { error } from "../../lib/utils/error"
 
-export function ChannelMention({ name }: Channel) {
+export function ChannelMention(channel: Channel) {
+  const { name } = channel
+
   if (!name) {
     error("Channel name is required to create a channel mention")
   }
