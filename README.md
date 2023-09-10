@@ -205,7 +205,7 @@ const data = [
 export default data
 ```
 
-`routers/transcript.js`:
+`routes/transcript.js`:
 
 ```js
 import { Webpage, Message } from "web-discord-transcripts"

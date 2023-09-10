@@ -10,8 +10,37 @@ export function TextChannel({ height, width }: { height?: number, width?: number
   )
 }
 
+export function HamburgerMenu() {
+  const style: Record<string, React.CSSProperties> = {
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "3px",
+      width: "20px",
+      height: "30px",
+      cursor: "pointer"
+    },
+    bar: {
+      width: "100%",
+      height: "3px",
+      borderRadius: "2px",
+      backgroundColor: "#80848e"
+    }
+  }
+
+  return (
+    <div style={style.container}>
+      <div style={style.bar}></div>
+      <div style={style.bar}></div>
+      <div style={style.bar}></div>
+    </div>
+  )
+}
+
 const symbols = {
-  textChannel: TextChannel
+  textChannel: TextChannel,
+  menu: HamburgerMenu
 }
 
 export default symbols

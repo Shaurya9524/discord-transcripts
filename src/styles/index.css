@@ -34,3 +34,16 @@ ul {
 .sidebars {
   display: flex;
 }
+
+@media (max-width: 800px) {
+  .main {
+    position: relative;
+  }
+
+  .chat-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
