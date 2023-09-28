@@ -1,3 +1,9 @@
+# Description
+# Discord Transcript
+NPM package that creates a HTML Transcript of a channel messages that can be saved for later use
+Useful for users that wants to store messages
+Useful for Tickets
+Check out our website dtranscript.cf coming soon.
 # web-discord-transcripts
 
 <div align="center">
@@ -252,3 +258,30 @@ For support and assistance, join our [Discord server](https://discord.gg/hSpXyy8
 ## License
 
 `web-discord-transcripts` is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+# Examples
+
+const tranascript = require('discord-transcript');
+const Discord = require("discord.js");
+const client = new Discord.Client();
+
+client.on("message", async(message) => {
+let channel = message.channel;
+
+
+let messagecollection = message.channel.messages.fetch({
+limit: 100
+
+});
+
+let link = await transcript.generate(message, messagecollection, channel);
+
+return message.channel.send(link);
+});
+/*
+OUTPUT: 
+
+{
+  "url": "https://discord-archive.herokuapp.com/view?id=841050751571853342",
+  "id": "841050751571853342",
+}
+*/
