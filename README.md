@@ -4,7 +4,7 @@ NPM package that creates a HTML Transcript of a channel messages that can be sav
 Useful for users that wants to store messages
 Useful for Tickets
 Check out our website dtranscript.cf coming soon.
-# web-discord-transcripts
+# web-discord-transcripts 
 
 <div align="center">
 	<p>
