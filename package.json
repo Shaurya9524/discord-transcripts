@@ -1,6 +1,6 @@
 {
   "name": "web-discord-transcripts",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Build web discord transcripts easily",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

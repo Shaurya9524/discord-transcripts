@@ -11,8 +11,30 @@ import { UserMention } from "./functions/main/user"
 // builders
 import { Embed } from "./functions/main/embed"
 
-export { Message, Webpage, Wrapper, RoleMention, ChannelMention, Embed, UserMention }
+// types
+export * from "./lib/types/channel"
+export * from "./lib/types/embed"
+export * from "./lib/types/file"
+export * from "./lib/types/guild"
+export * from "./lib/types/message"
+export * from "./lib/types/role"
+export * from "./lib/types/user"
+export * from "./lib/types/webpage"
 
-const webTranscripts = { Message, Webpage, Wrapper, RoleMention, ChannelMention, Embed, UserMention }
+export {
+  // main 
+  Wrapper, Webpage, Message,
+  // utils
+  ChannelMention, RoleMention, UserMention,
+  // builders
+  Embed
+}
 
-export default webTranscripts
+export default {
+  // main 
+  Wrapper, Webpage, Message,
+  // utils
+  ChannelMention, RoleMention, UserMention,
+  // builders
+  Embed
+}
