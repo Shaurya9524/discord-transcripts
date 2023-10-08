@@ -11,5 +11,5 @@ export function Webpage({ title, content, data }: WebpageProps): string {
 
   const node = <WebpageComponent title={title} data={data} content={content} />
   const html = renderToString(node)
-  return html
+  return `<!DOCTYPE html>${html}`
 }

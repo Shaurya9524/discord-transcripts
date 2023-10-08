@@ -46,4 +46,11 @@ ul {
     left: 0;
     z-index: 1;
   }
+
+  .sidebars {
+    position: absolute;
+    transform: translateX(-100%);
+    transition: all 0.4s;
+    z-index: 2;
+  }
 }

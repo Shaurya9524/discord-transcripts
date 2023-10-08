@@ -1,5 +1,5 @@
 import { WebpageProps } from "../../lib/types/webpage"
-import HTMLLayout from "../utils/htmlLayout"
+import HTMLLayout from "../utils/layout"
 import { GuildNavbar } from "./guildbar"
 import Sidebar from "./sidebar"
 import Chat from "./chat"

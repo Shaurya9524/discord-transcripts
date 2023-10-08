@@ -1,10 +1,9 @@
 import { Embed as EmbedProps } from "../../lib/types/embed"
+import { formatDate } from "../../lib/utils/time"
 import { defaults } from "../../config/embeds"
 import React from "react"
-import { formatDate } from "../../lib/utils/time"
 
-export default function Embed({ embedData }: { embedData: EmbedProps }) {
-  const { author, title, url, color, description, image, footer, timestamp } = embedData
+export default function Embed({ embedData: { author, title, url, color, description, image, footer, timestamp } }: { embedData: EmbedProps }) {
   const parsedColor = color ? color : defaults.color
 
   const embedAuthorName = author && <div className="embed-author-name">{author.name}</div>

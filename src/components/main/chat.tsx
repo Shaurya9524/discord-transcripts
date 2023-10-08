@@ -8,7 +8,7 @@ export default function Chat({ content, channel }: { content: ChatContent, chann
   return (
     <div className="chat-wrapper">
       <div className="chat-head">
-        <div className="sidebar-toggle-menu">
+        <div className="sidebar-toggle-menu" id="mobile-sidebar-toggle-menu">
           <HamburgerMenu />
         </div>
         <div className="chat-channel">

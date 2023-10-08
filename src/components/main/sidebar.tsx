@@ -4,7 +4,7 @@ import React from "react"
 
 export default function Sidebar({ guild }: SidebarProps) {
   return (
-    <div className="sidebar">
+    <div className="sidebar" aria-expanded="false">
       <DMs />
       <Separator />
       <ServerIcon guild={guild} />
