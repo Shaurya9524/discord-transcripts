@@ -1,6 +1,7 @@
 .guild-navbar {
   --bg-color: #2b2d31;
   width: 240px;
+  max-width: 240px;
   height: 100vh;
   display: flex;
   flex-direction: column;

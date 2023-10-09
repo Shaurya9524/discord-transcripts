@@ -1,6 +1,7 @@
 import { Message as MessageProps } from "../../lib/types/message"
 import EmbedComponent from "../../components/elements/embed"
 import { resolveContent } from "../../lib/utils/content"
+import globalDefaults from "../../assets/defaults"
 import { formatDate } from "../../lib/utils/time"
 import Bot from "../../components/elements/bot"
 import { error } from "../../lib/utils/error"
@@ -37,13 +38,17 @@ export function Message({ user, payload, time }: MessageProps) {
 
   const higestRoleColor = user.highestRole?.color
   const usernameColor = higestRoleColor ? higestRoleColor : defaults.color
+  const avatar = user.avatarURL || globalDefaults.userAvatar
+  const defaultAvatarStyles: React.CSSProperties = { padding: "7px" }
 
   const messageContents = content && content.map((content, i) => <div key={i} className={`message-content-${i}`}>{resolveContent(content)}</div>)
   const messageEmbeds = embeds && embeds.map((embed, i) => <EmbedComponent key={i} embedData={embed.data} />)
 
   return (
     <div className="message">
-      <img className="message-user-avatar" src={user.avatarURL} alt={user.username} />
+      <div className="message-user-avatar-holder">
+        <img className="message-user-avatar" src={avatar} alt={user.username} style={avatar === globalDefaults.userAvatar ? defaultAvatarStyles : {}} />
+      </div>
       <div className="message-contents">
         <div className="message-head">
           <span className="message-username" style={{ color: usernameColor }}>{user.username}</span>

@@ -14,10 +14,22 @@ export function Separator() {
   return <span className="dms-servers-seperator" />
 }
 
+function DefaultServerIcon({ guild }: { guild: Guild }) {
+  return (
+    <div className="default-server-icon sidebar-icon">
+      {guild.name[0]}
+    </div>
+  )
+}
+
 export function ServerIcon({ guild }: { guild: Guild }) {
   return (
     <div className="server-icon-wrapper" data-guildname={guild.name}>
-      <img className="sidebar-icon" src={guild.iconURL} alt={guild.name} />
+      {
+        guild.iconURL
+          ? <img className="sidebar-icon" src={guild.iconURL} alt={guild.name} />
+          : <DefaultServerIcon guild={guild} />
+      }
     </div>
   )
 }

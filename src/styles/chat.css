@@ -70,10 +70,21 @@
   padding: 5px;
 }
 
-.message-user-avatar {
+.message-user-avatar-holder {
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  min-width: 35px;
+  width: clamp(35px, 4vw, 40px);
+  height: clamp(35px, 4vw, 40px);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.message-user-avatar {
+  --default-avatar-bg-color: #ED4245;
+  width: 100%;
+  height: 100%;
+  background-color: var(--default-avatar-bg-color);
 }
 
 .message-contents {

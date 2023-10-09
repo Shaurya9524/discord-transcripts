@@ -20,9 +20,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 480px;
 }
 
 .embed-color {
+  min-width: 3px;
   width: 3px;
   height: inherit;
 }
@@ -49,7 +51,7 @@
 }
 
 .embed-image {
-  max-width: 240px;
+  width: clamp(190px, 30vw, 240px);
   aspect-ratio: initial;
 }
 

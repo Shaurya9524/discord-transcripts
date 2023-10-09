@@ -84,6 +84,7 @@ function animateSidebar() {
 const toggleBtn = document.getElementById("mobile-sidebar-toggle-menu") as HTMLElement
 const sidebar = document.querySelector(".sidebars") as HTMLElement
 
-toggleBtn.addEventListener("click", () => animateSidebar())
-
-addSwipeListeners(document, { left: animateInSidebar, right: animateOutSidebar })
+if (window.matchMedia("(max-width: 800px)").matches) {
+  toggleBtn.addEventListener("click", () => animateSidebar())
+  addSwipeListeners(document, { left: animateInSidebar, right: animateOutSidebar })
+}

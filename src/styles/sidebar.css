@@ -1,6 +1,7 @@
 .sidebar {
   --background: #1e1f22;
   height: 100vh;
+  max-width: 72.5px;
   background-color: var(--background);
   padding: 0.7rem;
   display: flex;
@@ -78,6 +79,14 @@
   height: 2px;
   background-color: var(--color);
   border-radius: 1px;
+}
+
+.default-server-icon {
+  --default-server-icon-bg-color: #313338;
+  background-color: var(--default-server-icon-bg-color);
+  display: grid;
+  place-items: center;
+  font-size: 25px;
 }
 
 .server-icon-wrapper {

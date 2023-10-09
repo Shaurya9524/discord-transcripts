@@ -22,19 +22,13 @@ export * from "./lib/types/user"
 export * from "./lib/types/webpage"
 
 export {
-  // main 
   Wrapper, Webpage, Message,
-  // utils
   ChannelMention, RoleMention, UserMention,
-  // builders
   Embed
 }
 
 export default {
-  // main 
   Wrapper, Webpage, Message,
-  // utils
   ChannelMention, RoleMention, UserMention,
-  // builders
   Embed
 }
