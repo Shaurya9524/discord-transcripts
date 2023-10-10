@@ -22,7 +22,6 @@
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [API Reference](#api-reference)
   - [Examples](#examples)
   - [Contributing](#contributing)
   - [Help](#help)
@@ -46,7 +45,8 @@ Generate the static webpage:
 
 ```js
 import { Webpage, Message } from "web-discord-transcripts"
-import { guild } from "../constants/guild.js"
+import { channels } from "../constants/channel.js"
+import { guilds } from "../constants/guild.js"
 import data from "../transcripts/example.js"
 
 const nodes = data.map((data) => {
@@ -63,18 +63,14 @@ const page = Webpage({
   title: "ticket-transcript",
   content: nodes,
   data: {
-    guild: guild.nightfangCommunity,
-    chatChannel: { name: "ticket-transcripts" }
+    guild: guilds.nightfangCommunity,
+    chatChannel: channels.ticketTranscripts
   }
 })
 ```
 
 For example, you can use express to show the generated webpage on the browser.
 Feel free to customize the above steps according to your application's specific needs. This package aims to simplify the process of managing and displaying chat transcripts for discord conversations, especially useful for ticket system.
-
-## API Reference
-
-Coming soon
 
 ## Examples
 
@@ -98,106 +94,129 @@ app.listen(port, () => {
 })
 ```
 
-`constants/role.js`:
-
+`constants/channel.js`:
 ```js
-import { RoleMention } from "web-discord-transcripts"
+import { Channel } from "web-discord-transcripts"
 
-export const role = {
-  admin: RoleMention({ name: "Admin", color: "#12c4ff" }),
-  mod: RoleMention({ name: "Mod", color: "#f59342" }),
-  support: RoleMention({ name: "Support Team", color: "#ffff00" }),
-  member: RoleMention({ name: "Member", color: "#ffffff" })
+export const channels = {
+  ticketTranscripts: new Channel({ name: "ticket-transcripts" }),
+  modApplication: new Channel({ name: "📄 mod-application" })
+}
+```
+
+`constants/guild.js`:
+```js
+import { Guild } from "web-discord-transcripts"
+
+export const guilds = {
+  nightfangCommunity: new Guild({
+    name: "Nightfang Community",
+    iconURL: "https://cdn.discordapp.com/icons/960453487743881237/aaa40a37a4fa84580aa317e7de696d24.webp"
+  })
+}
+```
+
+`constants/role.js`:
+```js
+import { Role } from "web-discord-transcripts"
+
+export const roles = {
+  staff: new Role({ name: "Staff", color: "#5865f2" }),
+  bot: new Role({ name: "Bot", color: "#f87248" }),
+  support: new Role({ name: "Support", color: "#ffff00" }),
+  member: new Role({ name: "Member", color: "#ffffff" }),
 }
 ```
 
 `constants/user.js`:
-
 ```js
-export const user = {
-  shadow: {
-    username: "Shadow",
-    avatarURL: "https://yt3.ggpht.com/mClYrQ4m2AifKcudIMglr-nh2fc3Pz8ca7eo5TE9_hPHbRayr3C71g5-fajjUIrF3lRIXSwXL1I=s88-c-k-c0x00ffffff-no-rj",
+import { User } from "web-discord-transcripts"
+import { roles } from "./role.js"
+
+export const users = {
+  nightfang: new User({
+    username: "Nightfang",
+    avatarURL: "https://cdn.discordapp.com/avatars/984245658905104384/a90a3ad0359ff2f67e65b40a13e2cb0d.png?size=1024",
     bot: true,
-    highestRole: {
-      name: "Admin",
-      color: "#12c4ff"
-    }
-  },
-  john: {
+    highestRole: roles.bot
+  }),
+  shadow: new User({
+    username: "Shadow",
+    avatarURL: "https://cdn.discordapp.com/avatars/893705256368750592/957bb7cf2f720432d818c9257a610b8c.png?size=1024",
+    highestRole: roles.staff
+  }),
+  john: new User({
     username: "John",
-    avatarURL: "https://cdn.dribbble.com/users/1784672/screenshots/17395334/media/b1f1a31cffe99b2d8dbcf04e0a9a1b42.png?resize=400x0"
-  },
-  joe: {
+    highestRole: roles.support
+  }),
+  joe: new User({
     username: "Joe",
-    avatarURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXo-425kMS5bzQw-ubghfVDyHsmjaJapowOWhRBYvpvTROWcFcw-uL3Q6ixN83guDClYg&usqp=CAU",
-    highestRole: {
-      name: "Support Team",
-      color: "#ffff00"
-    }
-  }
+    highestRole: roles.member
+  })
 }
 ```
 
 `transcripts/example.js`:
 
 ```js
-import { ChannelMention, Embed, UserMention } from "web-discord-transcripts"
-import { role } from "../constants/role.js"
-import { user } from "../constants/user.js"
+import { Embed } from "web-discord-transcripts"
 
-const infoEmbed = new Embed({
-  author: {
-    name: "author name"
-  },
-  title: "title",
+import { channels } from "../constants/channel.js"
+import { users } from "../constants/user.js"
+import { roles } from "../constants/role.js"
+
+const welcomeEmbed = new Embed({
   color: "#12c4ff",
-  description: "description",
-  footer: {
-    text: "footer text"
-  },
-  timestamp: true
+  title: "Welcome Joe",
+  description: `Please wait patiently for the ${roles.staff.mention()} to respond, until then do tell the purpose of creating the ticket`
+})
+
+const closeEmbed = new Embed({
+  color: "#f87248",
+  description: `Ticket closed by ${users.john.mention()}`
 })
 
 const data = [
   {
-    user: user.john,
+    user: users.nightfang,
+    embeds: [welcomeEmbed]
+  },
+  {
+    user: users.joe,
     content: [
       "Hello",
-      `${role.admin} I want to apply for ${role.mod}`
+      `${roles.staff.mention()} I want to apply for ${roles.support.mention()} role`
     ]
   },
   {
-    user: user.shadow,
+    user: users.shadow,
     content: [
-      "Please contact the support team for that, I'm currently busy"
-    ],
-    embeds: [infoEmbed]
-  },
-  {
-    user: user.john,
-    content: [
-      `${role.support} please help me out!`
+      `${users.john.mention()} will handle this ticket, I'm busy right now`
     ]
   },
   {
-    user: user.joe,
+    user: users.john,
     content: [
-      `Sure, please apply for ${role.mod} at ${ChannelMention({ name: "📄 mod-application" })}`
+      "Hi!",
+      `${users.joe.mention()} please apply for the support role at ${channels.modApplication.mention()}`,
+      `You can ping me if you want to ask anything`
     ]
   },
   {
-    user: user.john,
+    user: users.joe,
     content: [
       "Okay, thanks for the support!",
-      "You can close the ticket if you want"
+      "You may close the ticket"
     ]
   },
   {
-    user: user.shadow,
+    user: users.nightfang,
+    embeds: [closeEmbed]
+  },
+  {
+    user: users.nightfang,
     content: [
-      `Transcript saved - ticket handled by ${UserMention({ username: "Joe" })}`,
-      "This ticket will be closed in a few seconds"
+      "This ticket will be deleted in a few seconds"
     ]
   }
 ]
@@ -209,7 +228,8 @@ export default data
 
 ```js
 import { Webpage, Message } from "web-discord-transcripts"
-import { guild } from "../constants/guild.js"
+import { channels } from "../constants/channel.js"
+import { guilds } from "../constants/guild.js"
 import data from "../transcripts/example.js"
 import { Router } from "express"
 
@@ -230,8 +250,8 @@ router.get("/example", (_req, res) => {
     title: "ticket-transcript",
     content: nodes,
     data: {
-      guild: guild.nightfangCommunity,
-      chatChannel: { name: "ticket-transcripts" }
+      guild: guilds.nightfangCommunity,
+      chatChannel: channels.ticketTranscripts
     }
   })
 
@@ -243,7 +263,7 @@ export default router
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or want to suggest enhancements, please open an issue or submit a pull request on the GitHub repository.
+Contributions are welcome! If you find any issues or want to suggest enhancements, please open an issue or submit a pull request on the GitHub repository. Always ensure to check if an issue or pull request already exists before creating your own! There’s no need to hurry in making contributions, take your time to do it right.
 
 ## Help
 

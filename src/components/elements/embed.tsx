@@ -1,4 +1,5 @@
 import { Embed as EmbedProps } from "../../lib/types/embed"
+import { resolveContent } from "../../lib/utils/content"
 import { formatDate } from "../../lib/utils/time"
 import { defaults } from "../../config/embeds"
 import React from "react"
@@ -20,7 +21,7 @@ export default function Embed({ embedData: { author, title, url, color, descript
 
   const embedTitle = title && <div className="embed-title">{url ? <a href={url}>{title}</a> : title}</div>
 
-  const embedDescription = description && <div className="embed-description">{description}</div>
+  const embedDescription = description && <div className="embed-description">{resolveContent(description)}</div>
 
   const embedImage = image && <img className="embed-image" src={image.url} alt="embed-image" />
 

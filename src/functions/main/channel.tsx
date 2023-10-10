@@ -1,14 +1,26 @@
-import { Channel } from "../../lib/types/channel"
+import { Channel as ChannelProps } from "../../lib/types/channel"
 import { error } from "../../lib/utils/error"
 
-export function ChannelMention(channel: Channel) {
-  const { name } = channel
+export class Channel {
+  data: ChannelProps
 
-  if (!name) {
-    error("Channel name is required to create a channel mention")
+  constructor(data: ChannelProps) {
+    if (!data) {
+      error("Channel data is required to create the channel object")
+    }
+
+    const { name } = data
+
+    if (!name) {
+      error("Channel name is required to create the channel object")
+    }
+
+    this.data = data
   }
 
-  const parsedName = name.length > 25 ? `${name.slice(0, 25)}...` : name
-
-  return `ChannelMention(${parsedName})`
+  mention() {
+    const name = this.data.name
+    const parsedName = name.length > 25 ? `${name.slice(0, 25)}...` : name
+    return `ChannelMention(${parsedName})`
+  }
 }

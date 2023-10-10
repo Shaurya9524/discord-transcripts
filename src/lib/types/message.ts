@@ -1,6 +1,6 @@
 import { Embed } from "../../functions/main/embed"
-import { File } from "./file"
-import { User } from "./user"
+import { File } from "../../functions/main/file"
+import { User } from "../../functions/main/user"
 
 export interface MessagePayload {
   content?: string[]

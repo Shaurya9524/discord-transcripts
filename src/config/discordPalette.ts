@@ -13,6 +13,13 @@ const discordPalette = {
     hover: {
       background: "#2e3035"
     }
+  },
+  default: {
+    blurple: "#5865F2",
+    green: "#57F287",
+    yellow: "#FEE75C",
+    fuchsia: "#EB459E",
+    red: "#ED4245"
   }
 }
 

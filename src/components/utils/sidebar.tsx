@@ -1,4 +1,4 @@
-import { Guild } from "../../lib/types/guild"
+import { Guild } from "../../functions/main/guild"
 import logo from "../../assets/logo"
 import React from "react"
 
@@ -17,17 +17,17 @@ export function Separator() {
 function DefaultServerIcon({ guild }: { guild: Guild }) {
   return (
     <div className="default-server-icon sidebar-icon">
-      {guild.name[0]}
+      {guild.data.name[0]}
     </div>
   )
 }
 
 export function ServerIcon({ guild }: { guild: Guild }) {
   return (
-    <div className="server-icon-wrapper" data-guildname={guild.name}>
+    <div className="server-icon-wrapper" data-guildname={guild.data.name}>
       {
-        guild.iconURL
-          ? <img className="sidebar-icon" src={guild.iconURL} alt={guild.name} />
+        guild.data.iconURL
+          ? <img className="sidebar-icon" src={guild.data.iconURL} alt={guild.data.name} />
           : <DefaultServerIcon guild={guild} />
       }
     </div>

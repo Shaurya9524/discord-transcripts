@@ -4,8 +4,8 @@ export const regex = {
   hexColor: /^#?([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})$/i,
   mention: {
     role: /RoleMention\(([^),]+|[\p{Emoji}])(?:,\s*([^)]+))?\)/gu,
-    channel: /ChannelMention\(([^()]+|[\p{Emoji}])\)$/gu,
-    user: /UserMention\(([^()]+|[\p{Emoji}])\)$/gu
+    channel: /ChannelMention\(([^()]+|[\p{Emoji}])\)/gu,
+    user: /UserMention\(([^()]+|[\p{Emoji}])\)/gu
   }
 }
 

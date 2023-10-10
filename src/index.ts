@@ -3,12 +3,12 @@ import { Wrapper } from "./functions/utils/wrapper"
 import { Webpage } from "./functions/main/webpage"
 import { Message } from "./functions/main/message"
 
-// utils
-import { ChannelMention } from "./functions/main/channel"
-import { RoleMention } from "./functions/main/role"
-import { UserMention } from "./functions/main/user"
-
 // builders
+import { Channel } from "./functions/main/channel"
+import { Guild } from "./functions/main/guild"
+import { Role } from "./functions/main/role"
+import { User } from "./functions/main/user"
+import { File } from "./functions/main/file"
 import { Embed } from "./functions/main/embed"
 
 // types
@@ -23,12 +23,10 @@ export * from "./lib/types/webpage"
 
 export {
   Wrapper, Webpage, Message,
-  ChannelMention, RoleMention, UserMention,
-  Embed
+  Channel, Role, User, Guild, File, Embed
 }
 
 export default {
   Wrapper, Webpage, Message,
-  ChannelMention, RoleMention, UserMention,
-  Embed
+  Channel, Role, User, Guild, File, Embed
 }

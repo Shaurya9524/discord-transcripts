@@ -8,11 +8,12 @@ import { error } from "../../lib/utils/error"
 import { defaults } from "../../config/user"
 import React from "react"
 
-export function Message({ user, payload, time }: MessageProps) {
-  if (!user || !payload || !time) {
+export function Message(data: MessageProps) {
+  if (!data.user || !data.payload || !data.time) {
     error("All message data fields (user, payload, time) are required to create the message")
   }
 
+  const { user, payload, time } = data
   const { content, embeds, files } = payload
 
   if (!content && !embeds && !files) {
@@ -32,13 +33,13 @@ export function Message({ user, payload, time }: MessageProps) {
     }
   }
 
-  if (embeds && !user.bot) {
+  if (embeds && !user.data.bot) {
     error("A user cannot send embeds")
   }
 
-  const higestRoleColor = user.highestRole?.color
+  const higestRoleColor = user.data.highestRole?.data.color
   const usernameColor = higestRoleColor ? higestRoleColor : defaults.color
-  const avatar = user.avatarURL || globalDefaults.userAvatar
+  const avatar = user.data.avatarURL || globalDefaults.userAvatar
   const defaultAvatarStyles: React.CSSProperties = { padding: "7px" }
 
   const messageContents = content && content.map((content, i) => <div key={i} className={`message-content-${i}`}>{resolveContent(content)}</div>)
@@ -47,12 +48,12 @@ export function Message({ user, payload, time }: MessageProps) {
   return (
     <div className="message">
       <div className="message-user-avatar-holder">
-        <img className="message-user-avatar" src={avatar} alt={user.username} style={avatar === globalDefaults.userAvatar ? defaultAvatarStyles : {}} />
+        <img className="message-user-avatar" src={avatar} alt={user.data.username} style={avatar === globalDefaults.userAvatar ? defaultAvatarStyles : {}} />
       </div>
       <div className="message-contents">
         <div className="message-head">
-          <span className="message-username" style={{ color: usernameColor }}>{user.username}</span>
-          {user.bot && <span className="message-bot-tag-wrapper"><Bot /></span>}
+          <span className="message-username" style={{ color: usernameColor }}>{user.data.username}</span>
+          {user.data.bot && <span className="message-bot-tag-wrapper"><Bot /></span>}
           <span className="message-time">{formatDate(time)}</span>
         </div>
         <div className="message-body">

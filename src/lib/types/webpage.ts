@@ -1,5 +1,5 @@
-import { Channel } from "./channel"
-import { Guild } from "./guild"
+import { Channel } from "../../functions/main/channel"
+import { Guild } from "../../functions/main/guild"
 
 export type ChatContent = JSX.Element[]
 

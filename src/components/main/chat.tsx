@@ -1,7 +1,7 @@
 import { TextChannel, HamburgerMenu } from "../utils/symbols"
 import { Wrapper } from "../../functions/utils/wrapper"
+import { Channel } from "../../functions/main/channel"
 import { ChatContent } from "../../lib/types/webpage"
-import { Channel } from "../../lib/types/channel"
 import React from "react"
 
 export default function Chat({ content, channel }: { content: ChatContent, channel: Channel }) {
@@ -13,7 +13,7 @@ export default function Chat({ content, channel }: { content: ChatContent, chann
         </div>
         <div className="chat-channel">
           <span><TextChannel /></span>
-          <span>{channel.name}</span>
+          <span>{channel.data.name}</span>
         </div>
       </div>
       <div className="chat">
