@@ -21,7 +21,7 @@ export class User {
       error("The username must be between 2 and 32 characters")
     }
 
-    if (!(highestRole instanceof Role)) {
+    if (highestRole && !(highestRole instanceof Role)) {
       error("Invalid role object provided for the highest role of the user object")
     }
 
