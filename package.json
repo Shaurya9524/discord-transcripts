@@ -28,6 +28,9 @@
     "url": "https://github.com/ShadowOP1575/discord-transcripts/issues"
   },
   "homepage": "https://github.com/ShadowOP1575/discord-transcripts/#readme",
+  "dependencies": {
+    "@types/react": "^18.2.16"
+  },
   "devDependencies": {
     "@types/node": "^20.4.4",
     "@types/react": "^18.2.16",
