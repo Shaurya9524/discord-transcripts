@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShadowOP1575/discord-transcripts.git"
+    "url": "git+https://github.com/Shaurya9524/discord-transcripts.git"
   },
   "keywords": [
     "discord-transcripts",
@@ -25,9 +25,9 @@
   "author": "Shaurya Chauhan <blues9524@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ShadowOP1575/discord-transcripts/issues"
+    "url": "https://github.com/Shaurya9524/discord-transcripts/issues"
   },
-  "homepage": "https://github.com/ShadowOP1575/discord-transcripts/#readme",
+  "homepage": "https://github.com/Shaurya9524/discord-transcripts/#readme",
   "dependencies": {
     "@types/react": "^18.2.16"
   },
