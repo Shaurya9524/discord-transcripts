@@ -15,6 +15,10 @@ export class Channel {
       error("Channel name is required to create the channel object")
     }
 
+    if (name.length > 100) {
+      error("Channel name must be less than 100 characters")
+    }
+
     this.data = data
   }
 
