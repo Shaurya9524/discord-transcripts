@@ -19,6 +19,63 @@
   padding: 1.25rem;
 }
 
+.chat-head-options {
+  margin-left: auto;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+}
+
+#chat-head-members-icon {
+  --active-color: #dbdee1;
+  --popup-bg-color: #111214;
+  cursor: pointer;
+  position: relative;
+}
+
+#chat-head-members-icon[aria-expanded="true"]>svg>path,
+#chat-head-members-icon:hover>svg>path {
+  fill: var(--active-color);
+}
+
+#chat-head-members-icon:hover::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 6px 6px;
+  border-color: transparent transparent var(--popup-bg-color) transparent;
+  top: 95%;
+  right: 5px;
+}
+
+#chat-head-members-icon[aria-expanded="false"]:hover::after,
+#chat-head-members-icon[aria-expanded="true"]:hover::after {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--popup-bg-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 7px;
+  font-weight: 600;
+  top: calc(100% + 10px);
+  right: -10px;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+#chat-head-members-icon[aria-expanded="false"]:hover::after {
+  content: "Show Member List";
+}
+
+#chat-head-members-icon[aria-expanded="true"]:hover::after {
+  content: "Hide Member List";
+}
+
 .sidebar-toggle-menu {
   display: none;
 }
@@ -38,6 +95,12 @@
   text-wrap: nowrap;
 }
 
+.chat-body {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
 .chat {
   --scrollbar-width: 8px;
   --scrollbar-track-background: #2b2d31;
@@ -45,7 +108,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 0.75rem;
+  padding: 0.75rem 0.75rem 3.25rem 0.75rem;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;

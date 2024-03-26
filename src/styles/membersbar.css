@@ -1,0 +1,81 @@
+.membersbar {
+  --bg-color: #2b2d31;
+  --scrollbar-width: 6px;
+  --scrollbar-track-background: #2b2d31;
+  --scrollbar-thumb-background: #1a1b1e;
+  min-width: 240px;
+  height: 100%;
+  background-color: var(--bg-color);
+  padding: 1rem 1rem 3.25rem 1rem;
+  overflow-y: scroll;
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.membersbar::-webkit-scrollbar {
+  display: none;
+}
+
+.membersbar:hover::-webkit-scrollbar {
+  display: unset;
+  width: var(--scrollbar-width);
+}
+
+.membersbar::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-background);
+}
+
+.membersbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-background);
+  border-radius: 10px;
+}
+
+@media (max-width: 1000px) {
+  .membersbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.membersbar-member {
+  --hover-bg-color: #36373d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.membersbar-member:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.membersbar-member-avatar-holder {
+  --default-avatar-bg-color: #ED4245;
+  background-color: var(--default-avatar-bg-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.membersbar-member-avatar {
+  width: 32px;
+  height: 32px;
+}
+
+.membersbar-member-username {
+  --color: #8f9896;
+  --hover-color: #e3e5e6;
+  color: var(--color);
+  font-weight: 500;
+}
+
+.membersbar-member:hover .membersbar-member-username {
+  color: var(--hover-color);
+}

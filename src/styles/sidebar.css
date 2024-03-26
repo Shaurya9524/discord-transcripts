@@ -24,9 +24,11 @@
 }
 
 .dms {
+  --color: #dbdedb;
   --dms-bg: #313338;
   --dms-hover-color: #5865f2;
   --popup-bg-color: #111214;
+  color: var(--color);
   padding: 12px;
   background-color: var(--dms-bg);
   border-radius: 50%;

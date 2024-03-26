@@ -69,7 +69,7 @@ function animateOutSidebar() {
 }
 
 function animateSidebar() {
-  const attr = "aria-expranded"
+  const attr = "aria-expanded"
   const isSidebarOpen = sidebar.getAttribute(attr)
 
   if (isSidebarOpen === "true") {

@@ -3,6 +3,9 @@ const discordPalette = {
   sidebar: {
     background: "#1e1f22"
   },
+  messagebar: {
+    background: "#2b2d31"
+  },
   tag: {
     bot: {
       background: "#5865f2"

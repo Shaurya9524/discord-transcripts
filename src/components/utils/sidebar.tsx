@@ -4,9 +4,9 @@ import React from "react"
 
 export function DMs() {
   return (
-    <div className="dms sidebar-icon">
+    <a className="dms sidebar-icon" href="https://discord.com/users/@me" target="_blank">
       <img src={logo.discord} alt="DMs" />
-    </div>
+    </a>
   )
 }
 
