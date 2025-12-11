@@ -2,8 +2,7 @@
 node_modules
 
 # folders
-/dist
-/tests
+dist
 
 # others
 package-lock.json
